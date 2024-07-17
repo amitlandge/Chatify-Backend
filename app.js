@@ -45,13 +45,13 @@ const PORT = process.env.PORT;
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: process.env.CLIENT_URL,
+    origin: "*",
     credentials: true,
   },
 });
 app.use(cookieParser());
 app.use(express.json());
-
+app.use(cors({ origin: "*" }));
 app.get("/", (req, res) => {
   res.status(200).send("Hiii");
 });
