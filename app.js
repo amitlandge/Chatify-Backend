@@ -55,10 +55,10 @@ app.get("/", (req, res) => {
 });
 let userSocketIds = new Map();
 let onlineUsers = new Set();
-app.use("api/v1/user", userRoutes);
-app.use("api/v1/chat", chatRoutes);
-app.use("api/v1/message", messageRoutes);
-app.use("admin", adminRoutes);
+app.use("/api/v1/user", userRoutes);
+app.use("/api/v1/chat", chatRoutes);
+app.use("/api/v1/message", messageRoutes);
+app.use("/admin", adminRoutes);
 app.use(errorHandler);
 app.set("io", io);
 io.use(async (socket, next) => {
