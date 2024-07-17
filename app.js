@@ -44,14 +44,11 @@ cloudinary.config({
 const PORT = process.env.PORT;
 const server = createServer(app);
 const io = new Server(server, {
-  cors: {
-    origin: "*",
-    credentials: true,
-  },
+  cors: corsOptions,
 });
 app.use(cookieParser());
 app.use(express.json());
-app.use(cors({ origin: "*" }));
+app.use(cors(corsOptions));
 app.get("/", (req, res) => {
   res.status(200).send("Hiii");
 });
@@ -135,7 +132,12 @@ io.on("connection", (socket) => {
     socket.broadcast.emit(ONLINE_USERS, Array.from(onlineUsers));
   });
 });
+app.get("*", (req, res) => {
+  res.setHeader("Content-Type", "application/json");
 
+  res.setHeader("Content-Type", "text/html");
+  res.setHeader("Access-Control-Allow-Origin", process.env.CLIENT_URL);
+});
 server.listen(PORT, () => {
   console.log("Server is Running At 3000 Port");
 });
