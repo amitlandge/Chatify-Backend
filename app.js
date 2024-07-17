@@ -132,11 +132,16 @@ io.on("connection", (socket) => {
     socket.broadcast.emit(ONLINE_USERS, Array.from(onlineUsers));
   });
 });
-app.get("*", (req, res) => {
-  res.setHeader("Content-Type", "application/json");
+// app.get("*", (req, res) => {
+//   res.setHeader("Content-Type", "application/json");
 
-  res.setHeader("Content-Type", "text/html");
-  res.setHeader("Access-Control-Allow-Origin", process.env.CLIENT_URL);
+//   res.setHeader("Content-Type", "text/html");
+//   res.setHeader("Access-Control-Allow-Origin", process.env.CLIENT_URL);
+// });
+
+app.get("*", (req, res) => {
+  res.set("Access-Control-Allow-Origin", "*");
+  res.send({ msg: "This has CORS enabled 🎈" });
 });
 server.listen(PORT, () => {
   console.log("Server is Running At 3000 Port");
