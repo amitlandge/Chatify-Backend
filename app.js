@@ -44,11 +44,13 @@ cloudinary.config({
 const PORT = process.env.PORT;
 const server = createServer(app);
 const io = new Server(server, {
-  cors: corsOptions,
+  cors: {
+    origin: process.env.CLIENT_URL,
+  },
 });
 app.use(cookieParser());
 app.use(express.json());
-app.use(cors(corsOptions));
+app.use(cors({ origin: process.env.CLIENT_URL }));
 
 app.get("/", (req, res) => {
   res.status(200).send("Hiii");
