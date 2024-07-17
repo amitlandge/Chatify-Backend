@@ -132,18 +132,9 @@ io.on("connection", (socket) => {
     socket.broadcast.emit(ONLINE_USERS, Array.from(onlineUsers));
   });
 });
-// app.get("*", (req, res) => {
-//   res.setHeader("Content-Type", "application/json");
-
-//   res.setHeader("Content-Type", "text/html");
-//   res.setHeader("Access-Control-Allow-Origin", process.env.CLIENT_URL);
-// });
 
 app.get("*", (req, res) => {
-  res.set(
-    "Access-Control-Allow-Origin",
-    "https://chatify-frontend-jggguu405-amitlandges-projects.vercel.app"
-  );
+  res.set("Access-Control-Allow-Origin", process.env.CLIENT_URL);
   res.send({ msg: "This has CORS enabled 🎈" });
 });
 server.listen(PORT, () => {

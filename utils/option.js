@@ -1,6 +1,6 @@
 export const corsOptions = {
   origin: [
-    "https://chatify-frontend-jggguu405-amitlandges-projects.vercel.app",
+    process.env.CLIENT_URL,
     "http://localhost:5173",
     "http://localhost:4173",
   ],
