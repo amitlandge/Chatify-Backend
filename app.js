@@ -140,7 +140,10 @@ io.on("connection", (socket) => {
 // });
 
 app.get("*", (req, res) => {
-  res.set("Access-Control-Allow-Origin", "*");
+  res.set(
+    "Access-Control-Allow-Origin",
+    "https://chatify-frontend-jggguu405-amitlandges-projects.vercel.app"
+  );
   res.send({ msg: "This has CORS enabled 🎈" });
 });
 server.listen(PORT, () => {
